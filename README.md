@@ -40,7 +40,7 @@ Build solo or with a team of up to 3 people. Find teammates in the Build Challen
 
 ### **What to submit**
 
-1. **Public GitHub repo** with your code. Fork our [yolo-mlx repo](https://github.com/thewebAI/yolo-mlx) to get a standard structure with a working YOLO26 MLX inference script. Forking is strongly recommended but not required.  
+1. **Public GitHub repo** with your code. Fork our [yolo-mlx](https://github.com/thewebAI/yolo-mlx) repo to get a standard structure with a working YOLO26 MLX inference script. Forking is strongly recommended but not required.  
 2. **README that follows this checklist:**  
    * What it does, why you built it  
    * How to run it (we need to be able to run your code without issues)  
