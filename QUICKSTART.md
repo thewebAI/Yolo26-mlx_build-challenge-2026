@@ -97,6 +97,19 @@ cv2.destroyAllWindows()
 
 You'll need `opencv-python` installed: `pip install opencv-python`.
 
+A polished version of this snippet — with per-class box colors, larger labels, and correct BGR handling for `cv2.imshow` — is checked in at `webcam_demo.py` in the repo root. To run it, complete the setup steps above so you have:
+
+* `.venv` activated with `yolo-mlx`, `huggingface_hub`, and `opencv-python` installed
+* `models/yolo26n.npz` downloaded
+
+Then just:
+
+bash
+
+```shell
+python webcam_demo.py
+```
+
 The first time you run this, macOS will ask for camera permission for your terminal or IDE. Grant it. If you skip the prompt by accident, go to System Settings → Privacy & Security → Camera and enable it for whatever app is running Python.
 
 ### **Model size vs. speed**
