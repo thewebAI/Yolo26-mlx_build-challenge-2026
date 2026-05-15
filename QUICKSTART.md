@@ -13,35 +13,32 @@ The repo: [github.com/thewebAI/yolo-mlx](https://github.com/thewebAI/yolo-mlx)
 * Apple Silicon Mac (M1, M2, M3, or M4)  
 * macOS recent enough to support MLX (14.0+ recommended)  
 * Python 3.10 or newer  
-* \~2GB of free disk space for models and dependencies
+* \~500MB of free disk space for models and dependencies (more if you grab the larger variants)
 
 If you're on an Intel Mac, this won't work. The whole point of MLX is Apple Silicon native acceleration.
 
 ### **5-minute setup**
 
-Clone the repo, create a virtual environment, install the package, and download a model.
+Create a virtual environment and install the package:
 
 bash
 
 ```shell
-git clone https://github.com/thewebAI/yolo-mlx.git
-cd yolo-mlx
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e .
-pip install -e ".[convert]"
+pip install yolo-mlx huggingface_hub
 ```
 
-Download a pretrained model and convert it to MLX format. We recommend starting with `yolo26n` (the smallest model, \~170 FPS on M4 Pro) for fast iteration:
+Download a pretrained MLX model from Hugging Face. We recommend starting with `yolo26n` (the smallest model, \~170 FPS on M4 Pro) for fast iteration:
 
 bash
 
 ```shell
-bash scripts/download_yolo26_models.sh
-yolo26 converters convert models/yolo26n.pt -o models/yolo26n.npz --verify
+mkdir -p models
+hf download webAI-Official/yolo26n-mlx yolo26n.npz --local-dir models
 ```
 
-You now have a working MLX model at `models/yolo26n.npz`.
+You now have a working MLX model at `models/yolo26n.npz`. The five variants live at `webAI-Official/yolo26{n,s,m,l,x}-mlx` — swap the variant in the command above to grab any of them.
 
 ### **Run your first detection**
 
@@ -122,15 +119,15 @@ For most hackathon demos, `yolo26n` or `yolo26s` will be the right call. Real-ti
 
 **Camera permission isn't granted.** macOS blocks camera access by default. The first time your Python script accesses the camera, you'll get a system prompt. Approve it. If you missed it, go to System Settings → Privacy & Security → Camera and toggle on the app you're using.
 
-**Model conversion fails.** The `yolo26 converters convert` step needs the `[convert]` extras installed. If you skipped `pip install -e ".[convert]"`, go back and run it.
+**Model download fails.** Public models on Hugging Face don't require auth, but if you hit a rate limit run `hf auth login` and paste a token from [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens). Or download the file directly: `curl -L -o models/yolo26n.npz https://huggingface.co/webAI-Official/yolo26n-mlx/resolve/main/yolo26n.npz`.
 
-**Inference is slow.** Make sure you convert the `.pt` weights to `.npz`. If you're running inference on the raw `.pt` file you're using PyTorch under the hood, not MLX. The `.npz` is the MLX-native format.
+**First inference is slow.** First call to a model triggers MLX JIT compilation; subsequent calls are much faster. The FPS numbers above are steady-state, not first-call.
 
 **Out of memory on large models.** `yolo26x` needs more memory than `yolo26n`. If you're on an 8GB M1, stick with `n` or `s`.
 
 ### **Want to fine-tune?**
 
-YOLO26 MLX supports full training and fine-tuning on Apple Silicon. See the [training guide](https://github.com/thewebAI/yolo-mlx/blob/main/GUIDE_TRAINING_BENCHMARK.md) in the repo. For most 5-day sprint submissions, pretrained inference is enough — fine-tuning is a heavier lift.
+YOLO26 MLX supports full training and fine-tuning on Apple Silicon. See the [training guide](https://github.com/thewebAI/yolo-mlx/blob/main/GUIDE_TRAINING_BENCHMARK.md) in the repo. For most hackathon submissions, pretrained inference is enough — fine-tuning is a heavier lift.
 
 ### **License note**
 

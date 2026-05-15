@@ -36,7 +36,7 @@ Build whatever you want inside a track. The examples are just to get you started
 
 ### **Teams**
 
-Build solo or with a team of up to 3 people. Find teammates in the Build Challenges category on community.webai.com.
+Build solo or with a team of up to 3 people total. Find teammates in the Build Challenges category on community.webai.com.
 
 ### **What to submit**
 
@@ -90,7 +90,7 @@ Judges:
 * **Mon May 18, 6:00 \- 8:00 PM CT:** Kickoff \#1 at HackAI (Capital Factory)  
 * **Tue May 19, 5:30 \- 8:00 PM CT:** Kickoff \#2 at AITX tech talk (Antler)  
 * **Thu May 21:** Mid-challenge Q\&A (community.webai.com)  
-* **Sun May 24, 11:59pm PT:** Submissions due  
+* **Sun May 24, 11:59pm CT:** Submissions due  
 * **Wed May 27:** Winners announced
 
 ### **How to join**
